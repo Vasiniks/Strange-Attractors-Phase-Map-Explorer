@@ -129,7 +129,6 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
 .s-sec{margin-bottom:16px}
 .s-sec-hd{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:8px}
 .theme-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-.scale-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
 .theme-opt{padding:7px 10px;border-radius:7px;background:var(--card);border:1.5px solid var(--b2);cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:2px}
 .theme-opt:hover{border-color:var(--ac)}
 .theme-opt.active{border-color:var(--ac);background:rgba(77,136,255,.08)}
@@ -145,8 +144,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
 .preset-btn:hover{border-color:var(--ac);color:var(--txt)}
 .preset-btn.active{border-color:var(--ac);background:rgba(77,136,255,.1);color:var(--ac)}
 .preset-btn .pb-name{display:block;font-size:10px;margin-bottom:2px}
-.preset-btn .pb-eq{display:block;font-size:11px;pointer-events:none;overflow:hidden;white-space:nowrap}
-
+.preset-btn
 /* ── Help Overlay ── */
 #help-overlay{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.65);backdrop-filter:blur(6px)}
 #help-overlay.open{display:flex}
@@ -184,7 +182,6 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
 .eq-input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--b2);color:var(--ac);font-family:'DM Mono',monospace;font-size:11px;outline:none;padding:3px 2px;transition:border-color .15s}
 .eq-input:focus{border-bottom-color:var(--ac)}
 .eq-input::placeholder{color:var(--muted);opacity:.5}
-.eq-param-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
 .eq-param-chip{display:flex;align-items:center;gap:6px;padding:3px 8px 3px 10px;background:var(--card);border:1px solid var(--b2);border-radius:5px;font-size:11px;color:var(--txt)}
 .eq-param-val{width:54px;background:rgba(0,0,0,.2);border:none;border-bottom:1px solid var(--b2);color:var(--ac);font-family:'DM Mono',monospace;font-size:10px;text-align:right;outline:none;padding:1px 3px}
 .eq-preset-btn{padding:5px 8px;border-radius:6px;background:var(--card);border:1.5px solid var(--b2);cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);transition:all .15s;text-align:left}
@@ -248,7 +245,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
         <div class="xsec-row"><span class="xsec-k" style="font-size:10px;color:var(--muted);min-width:32px">Y pl.</span><input type="range" id="xs-1" min="0" max="1" step="0.005" value="1" oninput="onXsec(1,this)"><input type="number" class="xsec-v" id="xs-v1" min="0" max="1" step="0.01" value="1.00" onchange="onXsecVal(1,this)"></div>
         <div class="xsec-row"><span class="xsec-k" style="font-size:10px;color:var(--muted);min-width:32px">Z pl.</span><input type="range" id="xs-2" min="0" max="1" step="0.005" value="1" oninput="onXsec(2,this)"><input type="number" class="xsec-v" id="xs-v2" min="0" max="1" step="0.01" value="1.00" onchange="onXsecVal(2,this)"></div>
       </div>
-      
+
       <!-- Trace Panel (Overlays Left Panel) -->
       <div id="traj-panel" class="side-panel">
         <div class="side-panel-hdr">
@@ -259,17 +256,16 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
         <div class="side-panel-body">
           <div style="grid-column:1/-1">
             <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:6px">Trajectory Style & Size</div>
-            
+
             <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px">
               <button class="chip on" id="btn-traj-line" onclick="setTrajStyle('line')" style="flex:1;justify-content:center"><span class="chip-dot"></span>Line (Fast)</button>
               <button class="chip" id="btn-traj-tube" onclick="setTrajStyle('tube')" style="flex:1;justify-content:center"><span class="chip-dot"></span>Tube (Thick)</button>
             </div>
-            
+
             <div class="modal-sl"><div class="sl-hd"><span>Radius / Thickness</span><input type="number" class="sl-num" id="traj-thick-v" value="0.5" step="0.1" onchange="onNumChange(this, 'traj-thick-sl', onTrajThick)"></div><input type="range" id="traj-thick-sl" min="0.1" max="4.0" step="0.1" value="0.5" oninput="onTrajThick(this)"></div>
           </div>
-          
+
           <div style="grid-column:1/-1">
-            <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:6px">Trajectory Coloring</div>
             <select class="sel" id="traj-mode-sel" style="width:100%;margin-bottom:6px" onchange="CS.trajColor=this.value;renderTrajectory()">
               <option value="time">Time</option>
               <option value="velocity">Speed</option>
@@ -278,8 +274,8 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
               <option value="divergence">Instant Divergence</option>
             </select>
             <select class="sel" id="traj-cmap-sel" style="width:100%;margin-bottom:10px" onchange="onTrajCmap(this)">
-              <option value="desmos">Desmos HSV</option>
-              <option value="classic">Classic λ</option>
+              <option value="solid">Solid (Theme Color)</option>
+              <option value="hsv" selected>HSV</option>
               <option value="inferno">Inferno</option>
               <option value="plasma">Plasma</option>
               <option value="viridis">Viridis</option>
@@ -317,7 +313,7 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
         <canvas id="lgd2-bar" width="160" height="6" style="width:160px;height:6px;border-radius:3px"></canvas>
         <div style="display:flex;justify-content:space-between;width:160px;font-size:9px;color:var(--muted);font-family:'DM Mono',monospace"><span id="lgd2-lo">-2.00</span><span>λ=0</span><span id="lgd2-hi">+2.00</span></div>
       </div>
-      
+
       <!-- Color panel (Overlays Right Panel) -->
       <div id="color-panel" class="side-panel">
         <div class="side-panel-hdr">
@@ -327,7 +323,6 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
         </div>
         <div class="side-panel-body">
           <div style="grid-column:1/-1">
-            <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:6px">Map Colormap</div>
             <div class="preset-grid" id="preset-grid"></div>
             <!-- Custom LaTeX editor -->
             <div id="custom-sec" style="display:none;margin-top:6px;background:var(--card);border:1px solid var(--b2);border-radius:6px;padding:8px 10px">
@@ -339,25 +334,24 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
             </div>
             <!-- Classic tuning -->
             <div id="classic-sec" style="display:none;margin-top:6px">
-              <div class="modal-sl"><div class="sl-hd"><span class="sl-k" id="lbl-clm"></span><input type="number" class="sl-num" id="clm_v" value="150" step="5" onchange="onNumChange(this, 'sl_clm', onClm)"></div><input type="range" id="sl_clm" min="50" max="300" step="5" value="150" oninput="onClm(this)"></div>
-              <div class="modal-sl"><div class="sl-hd"><span class="sl-k" id="lbl-clh"></span><input type="number" class="sl-num" id="clh_v" value="0.40" step="0.05" onchange="onNumChange(this, 'sl_clh', onClh)"></div><input type="range" id="sl_clh" min="0.05" max="2" step="0.05" value="0.4" oninput="onClh(this)"></div>
+              <div class="modal-sl"><div class="sl-hd"><span class="sl-k" id="lbl-clm"></span><input type="number" class="sl-num" id="clm_v" value="400" step="5" onchange="onNumChange(this, 'sl_clm', onClm)"></div><input type="range" id="sl_clm" min="10" max="600" step="5" value="400" oninput="onClm(this)"></div>
+              <div class="modal-sl"><div class="sl-hd"><span class="sl-k" id="lbl-clh"></span><input type="number" class="sl-num" id="clh_v" value="1.00" step="0.05" onchange="onNumChange(this, 'sl_clh', onClh)"></div><input type="range" id="sl_clh" min="0.05" max="4" step="0.05" value="1.0" oninput="onClh(this)"></div>
             </div>
             <canvas id="lgd-mini" width="400" height="8" style="width:100%;height:8px;border-radius:4px;border:1px solid var(--b2);margin-top:6px;display:block"></canvas>
           </div>
 
           <div>
-            <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:6px">Map Tuning</div>
-            
+
             <button class="chip" id="btn-invert" onclick="toggleInvert()" style="margin-bottom:6px;width:100%;justify-content:center"><span class="chip-dot"></span>Invert Colors</button>
-            
+
             <div class="modal-sl"><div class="sl-hd"><span>Offset</span><input type="number" class="sl-num" id="offset_v" value="0.00" step="0.1" onchange="onNumChange(this, 'sl_offset', onOffset)"></div><input type="range" id="sl_offset" min="-5" max="5" step="0.1" value="0" oninput="onOffset(this)"></div>
             <div class="modal-sl"><div class="sl-hd"><span>Saturation</span><input type="number" class="sl-num" id="sat_v" value="1.00" step="0.05" onchange="onNumChange(this, 'sl_sat', onSat)"></div><input type="range" id="sl_sat" min="0" max="2" step="0.05" value="1" oninput="onSat(this)"></div>
-            <div class="modal-sl"><div class="sl-hd"><span>Stretch</span><input type="number" class="sl-num" id="stretch_v" value="1.00" step="0.05" onchange="onNumChange(this, 'sl_stretch', onStretch)"></div><input type="range" id="sl_stretch" min="0.1" max="4" step="0.05" value="1" oninput="onStretch(this)"></div>
+            <div class="modal-sl"><div class="sl-hd"><span>Linear Scale</span><input type="number" class="sl-num" id="linscale_v" value="40" step="1" onchange="onNumChange(this,'sl_linscale',onLinScale)"></div><input type="range" id="sl_linscale" min="0.1" max="500" step="1" value="40" oninput="onLinScale(this)"></div>
+            <div class="modal-sl"><div class="sl-hd"><span>Quadratic Scale</span><input type="number" class="sl-num" id="stretch_v" value="0.15" step="0.05" onchange="onNumChange(this, 'sl_stretch', onStretch)"></div><input type="range" id="sl_stretch" min="0.1" max="4" step="0.05" value="0.15" oninput="onStretch(this)"></div>
             <div class="modal-sl"><div class="sl-hd"><span>Log-mix</span><input type="number" class="sl-num" id="logmix_v" value="0.00" step="0.02" onchange="onNumChange(this, 'sl_logmix', onLogmix)"></div><input type="range" id="sl_logmix" min="0" max="1" step="0.02" value="0" oninput="onLogmix(this)"></div>
           </div>
-          
+
           <div>
-            <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:6px">NaN Color</div>
             <div style="display:flex;align-items:center;gap:8px">
               <div style="width:28px;height:28px;border-radius:5px;border:2px solid var(--b2);overflow:hidden;position:relative;cursor:pointer;flex-shrink:0">
                 <div id="nan-prev" style="width:100%;height:100%;background:#ff5900d9"></div>
@@ -365,10 +359,10 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
               </div>
               <div style="flex:1">
                 <div style="font-size:10px;color:var(--muted);display:flex;justify-content:space-between;align-items:center">
-                  <span>α =</span> 
-                  <input type="number" class="sl-num" id="nan-av" value="0.85" step="0.01" style="width:40px;margin-bottom:2px" onchange="onNumChange(this, 'nan-asl', onNanAlpha)">
+                  <span>α =</span>
+                  <input type="number" class="sl-num" id="nan-av" value="0.00" step="0.01" style="width:40px;margin-bottom:2px" onchange="onNumChange(this, 'nan-asl', onNanAlpha)">
                 </div>
-                <input type="range" id="nan-asl" min="0" max="1" step="0.01" value="0.85" style="width:100%" oninput="onNanAlpha(this)">
+                <input type="range" id="nan-asl" min="0" max="1" step="0.01" value="0.00" style="width:100%" oninput="onNanAlpha(this)">
               </div>
             </div>
           </div>
@@ -448,7 +442,6 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
     </div>
   </div>
 </div>
-
 
 <!-- Help Overlay -->
 <div id="help-overlay">
@@ -602,18 +595,17 @@ input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.3)}
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 <script>
-// ════════════ STATE ════════════════════════════════════════════
-const DEFS={sigma:10,rho:28,beta:8/3,dt:0.01,n_steps:600,p0:[0.5,0,0],lax_x:3,lax_y:4,lax_z:2,dynP:[10,28,8/3,0,0,0,0,0,0]};
+const DEFS={dt:0.01,n_steps:600,p0:[0.5,0,0],lax_x:3,lax_y:4,lax_z:2};
 const S=JSON.parse(JSON.stringify(DEFS));
 const RANGES=[[-5,5],[-5,5],[-5,5],[0.5,30],[0.5,60],[0.1,8]];
 const LATEXS=['x_0','y_0','z_0','\\sigma','\\rho','\\beta'];
 const SYMS=['x₀','y₀','z₀','σ','ρ','β'];
 
 const CS={
-  cmap:'desmos', trajColor:'time', sat:1, stretch:1, logmix:0, offset:0, epsExp:-6, invertColor:0,
+  cmap:'desmos', trajColor:'time', sat:1, linScale:40, stretch:0.15, logmix:0, offset:0, epsExp:-6, invertColor:0,
   pert:[1, 0, 0],
-  clM:150, clH:0.4,
-  nanR:1.0, nanG:0.35, nanB:0.0, nanA:0.85,
+  clM:400, clH:1.0,
+  nanR:1.0, nanG:0.35, nanB:0.0, nanA:0.0,
   trajStyle: 'line', trajThickness: 0.5,
   trajScale:[1,1,1],
   m3d_planes_en:[true, false, false], m3d_plane_counts:[15, 15, 15],
@@ -690,10 +682,8 @@ const THEMES=[
 ];
 let currentTheme='dark';
 
-// ════════════ KATEX ════════════════════════════════════════════
 function K(tex,el){try{katex.render(tex,el,{throwOnError:false});}catch(e){el.textContent=tex;}}
 
-// ════════════ COLORMAPS ════════════════════════════════════════
 function hsv2rgb(h,s,v){
   s=Math.max(0,Math.min(1,s));v=Math.max(0,Math.min(1,v));
   h=((h%360)+360)%360;const i=Math.floor(h/60)%6,f=h/60-Math.floor(h/60);
@@ -711,7 +701,7 @@ const LUTS={
   coolwarm:[[59,76,192],[98,130,234],[141,176,254],[194,213,252],[221,221,221],[252,205,183],[241,148,107],[206,76,56],[180,4,38]],
 };
 function lerp(a,b,t){return a+(b-a)*t;}
-function cmapEval(v){
+function cmapColor(v){
   if(CS.cmap==='desmos'||CS.cmap==='custom'){
     const d=2/(1+Math.exp(-5*Math.abs(v))),V=-5*(1-5*(1-d));
     let rgb=hsv2rgb(v>=0?60*V:240-60*V,.8,.8);
@@ -719,29 +709,53 @@ function cmapEval(v){
     return rgb;
   }
   if(CS.cmap==='classic'){
-    const t=Math.min(Math.abs(v)*0.4,1);
-    let rgb=v<0?[0,0,Math.round(t*255)]:[Math.round(t*255),Math.round(t*255),0];
+    const m=CS.clM,h=CS.clH;
+    const c2=v>0?Math.max(m/(1+Math.exp(h*v))+125,-255):Math.min(-(m/(1+Math.exp(-h*v)))-125,255);
+    let rgb=[Math.max(0,Math.min(255,-c2+25)),Math.max(0,Math.min(255,-c2-25)),Math.max(0,Math.min(255,c2))];
     if(CS.invertColor>0)rgb=[255-rgb[0],255-rgb[1],255-rgb[2]];
     return rgb;
   }
-
-  if(CS.cmap==='desmos' || CS.cmap==='custom'){
-    const d=2/(1+Math.exp(-5*Math.abs(v))),V=-5*(1-5*(1-d));
-    let rgb = hsv2rgb(v>=0?60*V:240-60*V,.8,.8);
-    if(CS.invertColor > 0) rgb =[255-rgb[0], 255-rgb[1], 255-rgb[2]];
-    return rgb;
+  // Named colormaps with JS implementations
+  const _t=0.5+0.5*Math.tanh(v*0.45);
+  if(CS.cmap==='fire'){
+    const b=Math.pow(_t,0.5);
+    let rgb=hsv2rgb(b*0.12*360,100,b*100);
+    if(CS.invertColor>0)rgb=[255-rgb[0],255-rgb[1],255-rgb[2]];return rgb;
   }
-  let rgb = lut(LUTS[CS.cmap]||LUTS.inferno,(v+2)/4);
-  if(CS.invertColor > 0) rgb =[255-rgb[0], 255-rgb[1], 255-rgb[2]];
+  if(CS.cmap==='ice'){
+    let rgb=hsv2rgb((0.58+0.08*_t)*360,(0.7-0.4*_t)*100,Math.pow(_t,0.6)*100);
+    if(CS.invertColor>0)rgb=[255-rgb[0],255-rgb[1],255-rgb[2]];return rgb;
+  }
+  if(CS.cmap==='neon'){
+    const h=v>=0?lerp(60,300,_t*2-1):lerp(300,60,_t*2);
+    let rgb=hsv2rgb(((h%360)+360)%360,85,85);
+    if(CS.invertColor>0)rgb=[255-rgb[0],255-rgb[1],255-rgb[2]];return rgb;
+  }
+  let rgb=lut(LUTS[CS.cmap]||LUTS.inferno,_t);
+  if(CS.invertColor>0)rgb=[255-rgb[0],255-rgb[1],255-rgb[2]];
   return rgb;
 }
 
-// ════════════ WEBGL2 2D MAP ════════════════════════════════════
+function cmapEval(rawLyap){
+  const str=CS.stretch||1;
+  const lyapL=rawLyap*(CS.linScale||1);
+  const lyapS=Math.sign(lyapL)*Math.pow(Math.abs(lyapL),Math.max(0.01,str));
+  const logV=Math.sign(lyapS)*(Math.log(1+Math.abs(lyapS))/1.25276*2.5);
+  let v=lyapS*(1-CS.logmix)+logV*CS.logmix+CS.offset;
+  let rgb=cmapColor(v);
+  // Apply saturation (lerp toward luminance-weighted gray)
+  const sat=CS.sat;
+  if(sat!==1){
+    const gray=Math.round(0.299*rgb[0]+0.587*rgb[1]+0.114*rgb[2]);
+    rgb=[Math.round(lerp(gray,rgb[0],sat)),Math.round(lerp(gray,rgb[1],sat)),Math.round(lerp(gray,rgb[2],sat))];
+  }
+  if(CS.invertColor>0)rgb=[255-rgb[0],255-rgb[1],255-rgb[2]];
+  return rgb;
+}
+
 const glC=document.getElementById('webgl-c');
 const gl=glC.getContext('webgl2',{antialias:false,preserveDrawingBuffer:true,alpha:true});
 
-// ════ DYNAMIC GLSL CORE ═══════════════════════════════════════════════════
-// buildGLSLCore() injects a sys_d function; euler2/rk42 call it with 9 param slots
 function buildGLSLCore(sysDFn){
 return `
 precision highp float;
@@ -776,26 +790,37 @@ const COLOR_PRESETS={
     name:'HSV', latex:'\\operatorname{hsv}(60V,0.8,0.8)',
     glsl:`vec3 mapColor(float lyap){float d=2.0/(1.0+exp(-5.0*abs(lyap)));float V=-5.0*(1.0-5.0*(1.0-d));float h=lyap>=0.0?60.0*V:240.0-60.0*V;return h2r(vec3(mod(h/360.0,1.0),0.8,0.8));}`},
   classic:{
-    name:'Lyapunov', latex:'\\text{black}\\to\\text{blue} \\,|\\, \\text{yellow}\\to\\text{black}',
-    glsl:`vec3 mapColor(float lyap){float t=clamp(abs(lyap)*0.4,0.,1.);if(lyap<0.0){return vec3(0.,0.,t);}else{return mix(vec3(0.),vec3(1.,1.,0.),t);}}`},
+    name:'Lyapunov', latex:'\\text{black}\\!\\to\\!\\text{yellow}\\,\\big|\\,\\text{blue}\\!\\to\\!\\text{black}',
+    glsl:`uniform float u_clM;uniform float u_clH;
+vec3 mapColor(float lyap){
+  float m=u_clM,h=u_clH;
+  float c2=(lyap>0.0)?max(m/(1.0+exp(h*lyap))+125.0,-255.0):min(-(m/(1.0+exp(-h*lyap)))-125.0,255.0);
+  return vec3(clamp((-c2+25.0)/255.0,0.,1.),clamp((-c2-25.0)/255.0,0.,1.),clamp(c2/255.0,0.,1.));
+}`},
   fire:{
     name:'Fire', latex:'\\operatorname{hsv}(0.07 t^{0.5},\;1,\;t)',
-    glsl:`vec3 mapColor(float lyap){float t=clamp((lyap+2.5)/5.0,0.,1.);return h2r(vec3(0.07*sqrt(t),1.0,t));}`},
+    glsl:`vec3 mapColor(float lyap){float t=0.5+0.5*tanh(lyap*0.45);float b=pow(t,0.5);return h2r(vec3(mix(0.0,0.12,b),1.0,b));}`},
   ice:{
     name:'Ice', latex:'\\operatorname{hsv}(0.55+0.1t,\;1-0.4t,\;t)',
-    glsl:`vec3 mapColor(float lyap){float t=clamp((lyap+2.5)/5.0,0.,1.);return h2r(vec3(0.55+0.1*t,1.0-0.4*t,t));}`},
+    glsl:`vec3 mapColor(float lyap){float t=0.5+0.5*tanh(lyap*0.45);return h2r(vec3(0.58+0.08*t,0.7-0.4*t,pow(t,0.6)));}`},
   neon:{
     name:'Neon', latex:'\\operatorname{hsv}(0.3+\\lambda/6,\;1,\;1)',
     glsl:`vec3 mapColor(float lyap){return h2r(vec3(fract(0.3+lyap/6.0),1.0,1.0));}`},
   inferno:{
     name:'Inferno', latex:'\\text{Inferno LUT}',
-    glsl:`vec3 mapColor(float lyap){float t=clamp((lyap+2.5)/5.0,0.,1.);vec3 c0=vec3(0.,0.,0.016),c1=vec3(0.157,0.043,0.329),c2=vec3(0.396,0.082,0.431),c3=vec3(0.623,0.165,0.388),c4=vec3(0.831,0.282,0.259),c5=vec3(0.961,0.490,0.082),c6=vec3(0.988,0.725,0.381),c7=vec3(0.988,1.0,0.644);float s=t*7.0;int i=int(s);float f=fract(s);vec3 cs[8];cs[0]=c0;cs[1]=c1;cs[2]=c2;cs[3]=c3;cs[4]=c4;cs[5]=c5;cs[6]=c6;cs[7]=c7;return mix(cs[clamp(i,0,7)],cs[clamp(i+1,0,7)],f);}`},
+    glsl:`vec3 mapColor(float lyap){float t=0.5+0.5*tanh(lyap*0.45);vec3 cs[8];cs[0]=vec3(0.,0.,0.016);cs[1]=vec3(0.157,0.043,0.329);cs[2]=vec3(0.396,0.082,0.431);cs[3]=vec3(0.623,0.165,0.388);cs[4]=vec3(0.831,0.282,0.259);cs[5]=vec3(0.961,0.490,0.082);cs[6]=vec3(0.988,0.725,0.381);cs[7]=vec3(0.988,1.0,0.644);float s=t*7.0;int i=int(s);float f=fract(s);return mix(cs[clamp(i,0,7)],cs[clamp(i+1,0,7)],f);}`},
+    plasma:{
+    name:'Plasma', latex:'\\text{Plasma LUT}',
+    glsl:`vec3 mapColor(float lyap){float t=0.5+0.5*tanh(lyap*0.45);vec3 cs[8];cs[0]=vec3(0.051,0.031,0.529);cs[1]=vec3(0.329,0.008,0.639);cs[2]=vec3(0.545,0.039,0.647);cs[3]=vec3(0.725,0.196,0.537);cs[4]=vec3(0.859,0.361,0.408);cs[5]=vec3(0.957,0.533,0.286);cs[6]=vec3(0.996,0.737,0.169);cs[7]=vec3(0.941,0.976,0.129);float s=t*7.0;int i=int(s);float f=fract(s);return mix(cs[clamp(i,0,7)],cs[clamp(i+1,0,7)],f);}`},
   viridis:{
     name:'Viridis', latex:'\\text{Viridis LUT}',
-    glsl:`vec3 mapColor(float lyap){float t=clamp((lyap+2.5)/5.0,0.,1.);vec3 c0=vec3(0.267,0.004,0.329),c1=vec3(0.282,0.157,0.471),c2=vec3(0.243,0.290,0.537),c3=vec3(0.192,0.408,0.533),c4=vec3(0.145,0.522,0.494),c5=vec3(0.180,0.637,0.396),c6=vec3(0.420,0.737,0.231),c7=vec3(0.988,0.906,0.145);float s=t*7.0;int i=int(s);float f=fract(s);vec3 cs[8];cs[0]=c0;cs[1]=c1;cs[2]=c2;cs[3]=c3;cs[4]=c4;cs[5]=c5;cs[6]=c6;cs[7]=c7;return mix(cs[clamp(i,0,7)],cs[clamp(i+1,0,7)],f);}`},
+    glsl:`vec3 mapColor(float lyap){float t=0.5+0.5*tanh(lyap*0.45);vec3 cs[8];cs[0]=vec3(0.267,0.004,0.329);cs[1]=vec3(0.282,0.157,0.471);cs[2]=vec3(0.243,0.290,0.537);cs[3]=vec3(0.192,0.408,0.533);cs[4]=vec3(0.145,0.522,0.494);cs[5]=vec3(0.180,0.637,0.396);cs[6]=vec3(0.420,0.737,0.231);cs[7]=vec3(0.988,0.906,0.145);float s=t*7.0;int i=int(s);float f=fract(s);return mix(cs[clamp(i,0,7)],cs[clamp(i+1,0,7)],f);}`},
   plasma:{
     name:'Plasma', latex:'\\text{Plasma LUT}',
-    glsl:`vec3 mapColor(float lyap){float t=clamp((lyap+2.5)/5.0,0.,1.);vec3 c0=vec3(0.051,0.031,0.529),c1=vec3(0.329,0.008,0.639),c2=vec3(0.545,0.039,0.647),c3=vec3(0.725,0.196,0.537),c4=vec3(0.859,0.361,0.408),c5=vec3(0.957,0.533,0.286),c6=vec3(0.996,0.737,0.169),c7=vec3(0.941,0.976,0.129);float s=t*7.0;int i=int(s);float f=fract(s);vec3 cs[8];cs[0]=c0;cs[1]=c1;cs[2]=c2;cs[3]=c3;cs[4]=c4;cs[5]=c5;cs[6]=c6;cs[7]=c7;return mix(cs[clamp(i,0,7)],cs[clamp(i+1,0,7)],f);}`},
+    glsl:`vec3 mapColor(float lyap){float t=0.5+0.5*tanh(lyap*0.45);vec3 c0=vec3(0.051,0.031,0.529),c1=vec3(0.329,0.008,0.639),c2=vec3(0.545,0.039,0.647),c3=vec3(0.725,0.196,0.537),c4=vec3(0.859,0.361,0.408),c5=vec3(0.957,0.533,0.286),c6=vec3(0.996,0.737,0.169),c7=vec3(0.941,0.976,0.129);float s=t*7.0;int i=int(s);float f=fract(s);vec3 cs[8];cs[0]=c0;cs[1]=c1;cs[2]=c2;cs[3]=c3;cs[4]=c4;cs[5]=c5;cs[6]=c6;cs[7]=c7;return mix(cs[clamp(i,0,7)],cs[clamp(i+1,0,7)],f);}`},
+  coolwarm:{
+    name:'Cool-Warm', latex:'\\text{Cool-Warm}',
+    glsl:`vec3 mapColor(float lyap){float t=0.5+0.5*tanh(lyap*0.45);vec3 c0=vec3(0.231,0.298,0.752),c1=vec3(0.553,0.690,0.996),c2=vec3(0.867,0.867,0.867),c3=vec3(0.996,0.576,0.384),c4=vec3(0.706,0.016,0.149);float s=t*4.0;int i=int(s);float f=fract(s);vec3 cs[5];cs[0]=c0;cs[1]=c1;cs[2]=c2;cs[3]=c3;cs[4]=c4;return mix(cs[clamp(i,0,4)],cs[clamp(i+1,0,4)],f);}`},
   custom:{name:'Custom ∫',latex:'',glsl:null}
 };
 
@@ -805,7 +830,6 @@ let _customLatex='\\operatorname{hsv}(\\lambda^{0.7} \\cdot 10^{4}, 0.7, 1.0)';
 let _customGLSL='';
 let _customError='';
 
-// ════ LATEX → GLSL COMPILER ══════════════════════════════════════════
 class LatexParser{
   constructor(s){this.s=s.trim();this.i=0;}
   peek(){return this.s[this.i]||'';}
@@ -927,13 +951,12 @@ function compileLatex(latex){
   }catch(e){return{glsl:null,error:String(e)};}
 }
 
-// ════ SHADER COMPILATION ════════════════════════════════════════════
 let _prog=null,_qb=null,_pl=null,_UL=null;
 const vsSrc=`#version 300 es
 in vec2 pos;out vec2 vUv;void main(){vUv=pos*.5+.5;gl_Position=vec4(pos,0.,1.);}`;
 const FS_BODY=`in vec2 vUv;out vec4 o;
 uniform float u_base[12];uniform int u_ax_x,u_ax_y;
-uniform float u_lox,u_hix,u_loy,u_hiy,u_dt,u_logmix,u_offset,u_sat,u_eps,u_stretch;
+uniform float u_lox,u_hix,u_loy,u_hiy,u_dt,u_logmix,u_offset,u_sat,u_eps,u_stretch,u_linScale;
 uniform int u_invert,u_rk4; uniform vec3 u_pert;
 uniform int u_steps;uniform vec4 u_nan;
 // COLORMAP_FUNCTION
@@ -954,7 +977,8 @@ void main(){
   if(d>1e6) bad=true;
   if(bad){o=u_nan;return;}
   float lyap=d<1e-30?-8.0:log(d/eps)/float(u_steps);
-  float lyapS=sign(lyap)*pow(abs(lyap),max(0.01, u_stretch));
+  float lyapL=lyap*u_linScale;
+  float lyapS=sign(lyapL)*pow(abs(lyapL),max(0.01, u_stretch));
   float logV=sign(lyapS)*(log(1.0+abs(lyapS))/1.25276*2.5);
   float v=mix(lyapS,logV,u_logmix) + u_offset;
   vec3 rgb=mapColor(v);
@@ -984,7 +1008,7 @@ function activateProg(p){
   }
   _pl=gl.getAttribLocation(_prog,'pos');
   gl.enableVertexAttribArray(_pl);gl.vertexAttribPointer(_pl,2,gl.FLOAT,false,0,0);
-  _UL={base:gl.getUniformLocation(_prog,'u_base'),ax_x:gl.getUniformLocation(_prog,'u_ax_x'),ax_y:gl.getUniformLocation(_prog,'u_ax_y'),lox:gl.getUniformLocation(_prog,'u_lox'),hix:gl.getUniformLocation(_prog,'u_hix'),loy:gl.getUniformLocation(_prog,'u_loy'),hiy:gl.getUniformLocation(_prog,'u_hiy'),dt:gl.getUniformLocation(_prog,'u_dt'),steps:gl.getUniformLocation(_prog,'u_steps'),invert:gl.getUniformLocation(_prog,'u_invert'),rk4:gl.getUniformLocation(_prog,'u_rk4'),pert:gl.getUniformLocation(_prog,'u_pert'),logmix:gl.getUniformLocation(_prog,'u_logmix'),offset:gl.getUniformLocation(_prog,'u_offset'),sat:gl.getUniformLocation(_prog,'u_sat'),eps:gl.getUniformLocation(_prog,'u_eps'),stretch:gl.getUniformLocation(_prog,'u_stretch'),nan:gl.getUniformLocation(_prog,'u_nan')};
+  _UL=_makeULoc(gl,_prog);
   return true;
 }
 activateProg(buildProg(COLOR_PRESETS.desmos.glsl));
@@ -1005,7 +1029,7 @@ function setColormap(key){
     m3dPlanesMat.needsUpdate=true;
   }
   if(gl2)rebuildMap2Prog();
-  const _cs=document.getElementById('classic-sec');if(_cs)_cs.style.display='none';
+  const _cs=document.getElementById('classic-sec');if(_cs)_cs.style.display=key==='classic'?'block':'none';
   const _cus=document.getElementById('custom-sec');if(_cus)_cus.style.display=key==='custom'?'block':'none';
   if(_colorPanelOpen)_updateColorBars();
 }
@@ -1013,7 +1037,7 @@ function setColormap(key){
 const cmapTex=gl.createTexture();
 function buildCmapTex(){
   const data=new Uint8Array(256*3);
-  for(let i=0;i<256;i++){const[r,g,b]=cmapEval(-2+(i/255)*4);data[i*3]=r;data[i*3+1]=g;data[i*3+2]=b;}
+  for(let i=0;i<256;i++){const[r,g,b]=cmapEval(-3+(i/255)*6);data[i*3]=r;data[i*3+1]=g;data[i*3+2]=b;}
   gl.bindTexture(gl.TEXTURE_2D,cmapTex);
   gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,256,1,0,gl.RGB,gl.UNSIGNED_BYTE,data);
   gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
@@ -1022,33 +1046,40 @@ function buildCmapTex(){
   if(m3dCmapTex)rebuildM3DCmapTex();
 }
 
-// ── Render pause flag (set while eq modal open) ─────────────────────────
 let _renderPaused=false;
+
+function _passRenderUniforms(g,ul,laxX,laxY,b,W,H){
+  g.uniform1fv(ul.base,getBaseArr());
+  g.uniform1i(ul.ax_x,laxX);g.uniform1i(ul.ax_y,laxY);
+  g.uniform1f(ul.lox,b.lox);g.uniform1f(ul.hix,b.hix);
+  g.uniform1f(ul.loy,b.loy);g.uniform1f(ul.hiy,b.hiy);
+  g.uniform1f(ul.dt,S.dt);g.uniform1i(ul.steps,S.n_steps);
+  g.uniform1i(ul.invert,CS.invertColor);g.uniform1i(ul.rk4,CS.integrator==='rk4'?1:0);
+  g.uniform3fv(ul.pert,CS.pert);
+  g.uniform1f(ul.logmix,CS.logmix);g.uniform1f(ul.offset,CS.offset);
+  g.uniform1f(ul.sat,CS.sat);g.uniform1f(ul.stretch,CS.stretch||1);g.uniform1f(ul.eps,CS.epsExp);
+  if(ul.linScale!=null)g.uniform1f(ul.linScale,CS.linScale||1);
+  if(ul.clM!=null)g.uniform1f(ul.clM,CS.clM);if(ul.clH!=null)g.uniform1f(ul.clH,CS.clH);
+  g.uniform4fv(ul.nan,[CS.nanR,CS.nanG,CS.nanB,CS.nanA]);
+  g.viewport(0,0,W,H);g.drawArrays(g.TRIANGLE_STRIP,0,4);
+}
 
 function renderWebGL(){
   if(_renderPaused||mapMode3D||!_prog||!_UL)return;
   gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
   gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.uniform1fv(_UL.base,getBaseArr());
-  gl.uniform1i(_UL.ax_x,S.lax_x);gl.uniform1i(_UL.ax_y,S.lax_y);
-  gl.uniform1f(_UL.lox,bounds.lox);gl.uniform1f(_UL.hix,bounds.hix);
-  gl.uniform1f(_UL.loy,bounds.loy);gl.uniform1f(_UL.hiy,bounds.hiy);
-  gl.uniform1f(_UL.dt,S.dt);gl.uniform1i(_UL.steps,S.n_steps);
-  gl.uniform1i(_UL.invert, CS.invertColor);
-  gl.uniform1i(_UL.rk4, CS.integrator==='rk4'?1:0);
-  gl.uniform3fv(_UL.pert, CS.pert);
-  gl.uniform1f(_UL.logmix,CS.logmix);
-  gl.uniform1f(_UL.offset,CS.offset);
-  gl.uniform1f(_UL.sat,CS.sat);gl.uniform1f(_UL.stretch,CS.stretch||1);gl.uniform1f(_UL.eps,CS.epsExp);
-  gl.uniform4fv(_UL.nan,[CS.nanR,CS.nanG,CS.nanB,CS.nanA]);
-  gl.viewport(0,0,glC.width,glC.height);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  _passRenderUniforms(gl,_UL,S.lax_x,S.lax_y,bounds,glC.width,glC.height);
 }
 
-// ════════════ SECOND MAP (Right Panel) ═════════════════════════
 const map2C=document.getElementById('map2-c');
 const map2UiC=document.getElementById('map2-ui-c');
 const map2UiCtx=map2UiC?map2UiC.getContext('2d'):null;
 
+function _makeULoc(g,p){
+  const L=n=>g.getUniformLocation(p,n);
+  return{base:L('u_base'),ax_x:L('u_ax_x'),ax_y:L('u_ax_y'),lox:L('u_lox'),hix:L('u_hix'),loy:L('u_loy'),hiy:L('u_hiy'),dt:L('u_dt'),steps:L('u_steps'),invert:L('u_invert'),rk4:L('u_rk4'),pert:L('u_pert'),logmix:L('u_logmix'),offset:L('u_offset'),sat:L('u_sat'),eps:L('u_eps'),stretch:L('u_stretch'),linScale:L('u_linScale'),nan:L('u_nan'),clM:L('u_clM'),clH:L('u_clH')};
+}
+function _makeUL2(){return _makeULoc(gl2,prog2);}
 function initMap2(){
   if(gl2)return;
   gl2=map2C.getContext('webgl2',{antialias:false,preserveDrawingBuffer:true,alpha:true});
@@ -1065,7 +1096,7 @@ function initMap2(){
   gl2.bufferData(gl2.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl2.STATIC_DRAW);
   pl2=gl2.getAttribLocation(prog2,'pos');
   gl2.enableVertexAttribArray(pl2);gl2.vertexAttribPointer(pl2,2,gl2.FLOAT,false,0,0);
-  UL2={base:gl2.getUniformLocation(prog2,'u_base'),ax_x:gl2.getUniformLocation(prog2,'u_ax_x'),ax_y:gl2.getUniformLocation(prog2,'u_ax_y'),lox:gl2.getUniformLocation(prog2,'u_lox'),hix:gl2.getUniformLocation(prog2,'u_hix'),loy:gl2.getUniformLocation(prog2,'u_loy'),hiy:gl2.getUniformLocation(prog2,'u_hiy'),dt:gl2.getUniformLocation(prog2,'u_dt'),steps:gl2.getUniformLocation(prog2,'u_steps'),invert:gl2.getUniformLocation(prog2,'u_invert'),rk4:gl2.getUniformLocation(prog2,'u_rk4'),pert:gl2.getUniformLocation(prog2,'u_pert'),logmix:gl2.getUniformLocation(prog2,'u_logmix'),offset:gl2.getUniformLocation(prog2,'u_offset'),sat:gl2.getUniformLocation(prog2,'u_sat'),eps:gl2.getUniformLocation(prog2,'u_eps'),stretch:gl2.getUniformLocation(prog2,'u_stretch'),nan:gl2.getUniformLocation(prog2,'u_nan')};
+  UL2=_makeUL2();
 }
 function mkSh2(t,s){const sh=gl2.createShader(t);gl2.shaderSource(sh,s);gl2.compileShader(sh);if(!gl2.getShaderParameter(sh,gl2.COMPILE_STATUS)){console.error('GLSL2:',gl2.getShaderInfoLog(sh));return null;}return sh;}
 
@@ -1073,17 +1104,7 @@ function renderWebGL2(){
   if(_renderPaused||rightMode!=='map'||!gl2||!prog2||!UL2)return;
   gl2.enable(gl2.BLEND);gl2.blendFunc(gl2.SRC_ALPHA,gl2.ONE_MINUS_SRC_ALPHA);
   gl2.clearColor(0,0,0,0);gl2.clear(gl2.COLOR_BUFFER_BIT);
-  gl2.uniform1fv(UL2.base,getBaseArr());
-  gl2.uniform1i(UL2.ax_x,S2.lax_x);gl2.uniform1i(UL2.ax_y,S2.lax_y);
-  gl2.uniform1f(UL2.lox,bounds2.lox);gl2.uniform1f(UL2.hix,bounds2.hix);
-  gl2.uniform1f(UL2.loy,bounds2.loy);gl2.uniform1f(UL2.hiy,bounds2.hiy);
-  gl2.uniform1f(UL2.dt,S.dt);gl2.uniform1i(UL2.steps,S.n_steps);
-  gl2.uniform1i(UL2.invert,CS.invertColor);gl2.uniform1i(UL2.rk4,CS.integrator==='rk4'?1:0);
-  gl2.uniform3fv(UL2.pert,CS.pert);
-  gl2.uniform1f(UL2.logmix,CS.logmix);gl2.uniform1f(UL2.offset,CS.offset);
-  gl2.uniform1f(UL2.sat,CS.sat);gl2.uniform1f(UL2.stretch,CS.stretch||1);gl2.uniform1f(UL2.eps,CS.epsExp);
-  gl2.uniform4fv(UL2.nan,[CS.nanR,CS.nanG,CS.nanB,CS.nanA]);
-  gl2.viewport(0,0,map2C.width,map2C.height);gl2.drawArrays(gl2.TRIANGLE_STRIP,0,4);
+  _passRenderUniforms(gl2,UL2,S2.lax_x,S2.lax_y,bounds2,map2C.width,map2C.height);
   updateUIOverlay2();
 }
 
@@ -1091,8 +1112,7 @@ function updateUIOverlay2(){
   if(rightMode!=='map'||!map2UiCtx)return;
   const W=map2UiC.width,H=map2UiC.height;map2UiCtx.clearRect(0,0,W,H);
   if(showGrid){drawWorldGrid(map2UiCtx,W,H,bounds2.lox,bounds2.hix,bounds2.loy,bounds2.hiy,CS_gridAlpha,1);}
-  document.getElementById('ax2Xr').textContent=`[${bounds2.lox.toFixed(1)}, ${bounds2.hix.toFixed(1)}]`;
-  document.getElementById('ax2Yr').textContent=`[${bounds2.loy.toFixed(1)}, ${bounds2.hiy.toFixed(1)}]`;
+  if(bounds2&&isFinite(bounds2.lox)){document.getElementById('ax2Xr').textContent=`[${bounds2.lox.toFixed(1)}, ${bounds2.hix.toFixed(1)}]`;document.getElementById('ax2Yr').textContent=`[${bounds2.loy.toFixed(1)}, ${bounds2.hiy.toFixed(1)}]`;}
 }
 
 function rebuildMap2Prog(){
@@ -1110,7 +1130,7 @@ function rebuildMap2Prog(){
   gl2.useProgram(prog2);
   gl2.bindBuffer(gl2.ARRAY_BUFFER,qb2);
   gl2.enableVertexAttribArray(pl2);gl2.vertexAttribPointer(pl2,2,gl2.FLOAT,false,0,0);
-  UL2={base:gl2.getUniformLocation(prog2,'u_base'),ax_x:gl2.getUniformLocation(prog2,'u_ax_x'),ax_y:gl2.getUniformLocation(prog2,'u_ax_y'),lox:gl2.getUniformLocation(prog2,'u_lox'),hix:gl2.getUniformLocation(prog2,'u_hix'),loy:gl2.getUniformLocation(prog2,'u_loy'),hiy:gl2.getUniformLocation(prog2,'u_hiy'),dt:gl2.getUniformLocation(prog2,'u_dt'),steps:gl2.getUniformLocation(prog2,'u_steps'),invert:gl2.getUniformLocation(prog2,'u_invert'),rk4:gl2.getUniformLocation(prog2,'u_rk4'),pert:gl2.getUniformLocation(prog2,'u_pert'),logmix:gl2.getUniformLocation(prog2,'u_logmix'),offset:gl2.getUniformLocation(prog2,'u_offset'),sat:gl2.getUniformLocation(prog2,'u_sat'),eps:gl2.getUniformLocation(prog2,'u_eps'),stretch:gl2.getUniformLocation(prog2,'u_stretch'),nan:gl2.getUniformLocation(prog2,'u_nan')};
+  UL2=_makeUL2();
   renderWebGL2();
 }
 
@@ -1155,9 +1175,10 @@ function doHome2(){
 }
 
 function drawLegend2(){
-  const c=document.getElementById('lgd2-bar');if(!c)return;
-  const ctx=c.getContext('2d'),img=ctx.createImageData(160,6);
-  for(let i=0;i<160;i++){const[r,g,b]=cmapEval(-2+(i/159)*4);for(let row=0;row<6;row++){const idx=(row*160+i)*4;img.data[idx]=r;img.data[idx+1]=g;img.data[idx+2]=b;img.data[idx+3]=255;}}
+  const cv=document.getElementById('lgd2-bar');if(!cv)return;
+  const ctx=cv.getContext('2d'),img=ctx.createImageData(160,6);
+  const lo=-0.1,hi=0.1;
+  for(let i=0;i<160;i++){const[r,g,b]=cmapEval(lo+(i/159)*(hi-lo));for(let row=0;row<6;row++){const idx=(row*160+i)*4;img.data[idx]=r;img.data[idx+1]=g;img.data[idx+2]=b;img.data[idx+3]=255;}}
   ctx.putImageData(img,0,0);
 }
 
@@ -1243,7 +1264,7 @@ let m3dCmapTex=null;
 
 function rebuildM3DCmapTex(){
   const data=new Uint8Array(256*4);
-  for(let i=0;i<256;i++){const[r,g,b]=cmapEval(-2+(i/255)*4);data[i*4]=r;data[i*4+1]=g;data[i*4+2]=b;data[i*4+3]=255;}
+  for(let i=0;i<256;i++){const[r,g,b]=cmapEval(-3+(i/255)*6);data[i*4]=r;data[i*4+1]=g;data[i*4+2]=b;data[i*4+3]=255;}
   if(!m3dCmapTex){
     m3dCmapTex=new THREE.DataTexture(data,256,1,THREE.RGBAFormat);
     m3dCmapTex.minFilter=m3dCmapTex.magFilter=THREE.LinearFilter;
@@ -1294,7 +1315,7 @@ const PLANE_VS_SRC=[
 const PLANE_FS_BODY=`
 in vec2 vUv2;in float vDepth;in float vAxis;out vec4 fragColor;
 uniform float u_base[12];uniform int u_ax_x,u_ax_y,u_ax_z;
-uniform float u_lox,u_hix,u_loy,u_hiy,u_loz,u_hiz,u_dt,u_eps,u_sat,u_stretch,u_logmix,u_offset,u_opacity;
+uniform float u_lox,u_hix,u_loy,u_hiy,u_loz,u_hiz,u_dt,u_eps,u_sat,u_stretch,u_logmix,u_offset,u_opacity,u_linScale;
 uniform int u_invert,u_rk4; uniform vec3 u_pert;
 uniform vec3 u_xsec;uniform sampler2D u_cmap;
 uniform int u_steps;uniform vec4 u_nan;
@@ -1322,7 +1343,8 @@ void main(){
   if(d>1e6) bad=true;
   if(bad){if(u_nan.a<.01)discard;fragColor=u_nan;return;}
   float lyap=d<1e-30?-8.0:log(d/eps)/float(u_steps);
-  float lyapS=sign(lyap)*pow(abs(lyap),max(0.01, u_stretch));
+  float lyapL=lyap*u_linScale;
+  float lyapS=sign(lyapL)*pow(abs(lyapL),max(0.01, u_stretch));
   float logV=sign(lyapS)*(log(1.0+abs(lyapS))/1.25276*2.5);
   float v=mix(lyapS,logV,u_logmix) + u_offset;
   vec3 rgb=mapColor(v);
@@ -1344,8 +1366,9 @@ function _buildPlanesMat(){
       u_loy:{value:bounds3D.y.lo},u_hiy:{value:bounds3D.y.hi},
       u_loz:{value:bounds3D.z.lo},u_hiz:{value:bounds3D.z.hi},
       u_dt:{value:S.dt},u_eps:{value:CS.epsExp},
-      u_sat:{value:CS.sat},u_stretch:{value:CS.stretch||1},
+      u_sat:{value:CS.sat},u_stretch:{value:CS.stretch||1},u_linScale:{value:CS.linScale||1},
       u_logmix:{value:CS.logmix},u_offset:{value:CS.offset||0},
+      u_clM:{value:CS.clM},u_clH:{value:CS.clH},
       u_invert:{value:CS.invertColor},u_rk4:{value:0},u_pert:{value:new THREE.Vector3(...CS.pert)},
       u_steps:{value:Math.min(S.n_steps,300)},
       u_nan:{value:new THREE.Vector4(CS.nanR,CS.nanG,CS.nanB,CS.nanA)},
@@ -1405,8 +1428,9 @@ function updatePlanesUniforms(){
   u.u_loz.value=bounds3D.z.lo;u.u_hiz.value=bounds3D.z.hi;
   u.u_dt.value=S.dt;u.u_eps.value=CS.epsExp;
   u.u_invert.value=CS.invertColor;u.u_rk4.value=CS.integrator==='rk4'?1:0;u.u_pert.value.set(...CS.pert);
-  u.u_sat.value=CS.sat;u.u_stretch.value=CS.stretch||1;
+  u.u_sat.value=CS.sat;u.u_stretch.value=CS.stretch||1;if(u.u_linScale)u.u_linScale.value=CS.linScale||1;
   u.u_logmix.value=CS.logmix;u.u_offset.value=CS.offset;
+  if(u.u_clM)u.u_clM.value=CS.clM;if(u.u_clH)u.u_clH.value=CS.clH;
   u.u_steps.value=CS.m3d_planes_steps;
   u.u_nan.value.set(CS.nanR,CS.nanG,CS.nanB,CS.nanA);
   u.u_opacity.value=CS.m3d_planes_opacity;
@@ -1419,13 +1443,12 @@ function triggerMap3D(){
   updatePlanesUniforms();
 }
 
-// ════════════ 3D BOUNDS ═════════════════════════════════════════
 function _sync3DBoundsUI(){
   ['x','y','z'].forEach((ax,i)=>{
     const loEl=document.getElementById('b3d_'+ax+'_lo');
     const hiEl=document.getElementById('b3d_'+ax+'_hi');
-    if(loEl)loEl.value=bounds3D[ax].lo.toFixed(2);
-    if(hiEl)hiEl.value=bounds3D[ax].hi.toFixed(2);
+    if(loEl&&bounds3D[ax]?.lo!=null)loEl.value=bounds3D[ax].lo.toFixed(2);
+    if(hiEl&&bounds3D[ax]?.hi!=null)hiEl.value=bounds3D[ax].hi.toFixed(2);
   });
 }
 
@@ -1452,7 +1475,6 @@ function equalize3DBounds(){
   updatePlanesUniforms();
   updateXsecUI();
 }
-
 
 function _xsecRanges(){
   return[
@@ -1489,7 +1511,6 @@ function updateXsecUI(){
   if(m3dPlanesMat)m3dPlanesMat.uniforms.u_xsec.value.set(...xsec);
 }
 
-// ════════════ CPU HOVER LYAP ═══════════════════════════════════
 function lorenzStep(x,y,z,sg,ro,bt,dt){
   if(CS.integrator==='rk4'){
     const k1x=sg*(y-x),         k1y=x*(ro-z)-y,         k1z=x*y-bt*z;
@@ -1524,7 +1545,6 @@ function calcLyapAt(vx,vy){
   return d<1e-30?-8:Math.log(d/eps)/steps;
 }
 
-// ════════════ UI OVERLAY ═══════════════════════════════════════
 const uiC=document.getElementById('ui-c'),uiCtx=uiC.getContext('2d');
 function getGridColor(alpha){
   // Read --txt CSS variable for theme-aware grid color
@@ -1536,7 +1556,6 @@ function getGridColor(alpha){
   const ri=parseInt(h.slice(0,2),16)||200,gi=parseInt(h.slice(2,4),16)||200,bi=parseInt(h.slice(4,6),16)||232;
   return`rgba(${ri},${gi},${bi},${alpha})`;
 }
-
 
 // World-space grid: compute nice step for ~N lines across span
 function niceStep(span,n){
@@ -1562,7 +1581,7 @@ function drawWorldGrid(ctx,W,H,lox,hix,loy,hiy,alpha,thick){
     const px=((wx-lox)/xSpan)*W;
     ctx.beginPath();ctx.moveTo(px,0);ctx.lineTo(px,H);ctx.stroke();
   }
-  // horizontal lines at yStep intervals  
+  // horizontal lines at yStep intervals
   const y0=Math.ceil(loy/yStep)*yStep;
   for(let wy=y0;wy<=hiy+yStep*0.01;wy+=yStep){
     const py=(1-(wy-loy)/ySpan)*H;
@@ -1578,14 +1597,15 @@ function updateUIOverlay(){
   if(mapMode3D)return;
   const W=uiC.width,H=uiC.height;uiCtx.clearRect(0,0,W,H);
   if(showGrid){drawWorldGrid(uiCtx,W,H,bounds.lox,bounds.hix,bounds.loy,bounds.hiy,CS_gridAlpha,1);}
-  const cx=cursor[0]*W,cy=(1-cursor[1])*H;
+  // Clamp cursor to canvas bounds so it's always visible
+  const cx=Math.max(0,Math.min(W,cursor[0]*W)),cy=Math.max(0,Math.min(H,(1-cursor[1])*H));
   uiCtx.strokeStyle=getGridColor(0.5);uiCtx.lineWidth=1;uiCtx.setLineDash([4,4]);
   uiCtx.beginPath();uiCtx.moveTo(0,cy);uiCtx.lineTo(W,cy);uiCtx.stroke();
   uiCtx.beginPath();uiCtx.moveTo(cx,0);uiCtx.lineTo(cx,H);uiCtx.stroke();
   uiCtx.setLineDash([]);uiCtx.beginPath();uiCtx.arc(cx,cy,5,0,Math.PI*2);
   uiCtx.strokeStyle=getGridColor(0.9);uiCtx.lineWidth=1.5;uiCtx.stroke();uiCtx.fillStyle=getGridColor(0.18);uiCtx.fill();
-  document.getElementById('axXr').textContent=`[${bounds.lox.toFixed(1)}, ${bounds.hix.toFixed(1)}]`;
-  document.getElementById('axYr').textContent=`[${bounds.loy.toFixed(1)}, ${bounds.hiy.toFixed(1)}]`;
+  if(bounds&&isFinite(bounds.lox)){document.getElementById('axXr').textContent=`[${bounds.lox.toFixed(1)}, ${bounds.hix.toFixed(1)}]`;document.getElementById('axYr').textContent=`[${bounds.loy.toFixed(1)}, ${bounds.hiy.toFixed(1)}]`;}
+
 }
 
 let mapDrag=false,dragMoved=false,mapShiftDrag=false,shiftDragStartX=0,shiftDragStartY=0,stretchStartX=1,stretchStartY=1;
@@ -1615,7 +1635,7 @@ uiC.addEventListener('mousemove',e=>{
   const tip=document.getElementById('ctip');tip.style.display='block';
   document.getElementById('ctip-xv').textContent=vx.toFixed(3);
   document.getElementById('ctip-yv').textContent=vy.toFixed(3);
-  document.getElementById('ctip-lv').textContent=calcLyapAt(vx,vy).toFixed(4);
+  {const _l=calcLyapAt(vx,vy);document.getElementById('ctip-lv').textContent=isFinite(_l)?_l.toFixed(4):'—';}
   tip.style.left=Math.min(e.clientX-r.left+12,r.width-185)+'px';
   tip.style.top=Math.max(e.clientY-r.top-34,4)+'px';
   if(mapShiftDrag){
@@ -1650,23 +1670,39 @@ uiC.addEventListener('mouseup',e=>{
 });
 uiC.addEventListener('mouseleave',()=>{mapDrag=false;mapShiftDrag=false;uiC.style.cursor='crosshair';document.getElementById('ctip').style.display='none';});
 
-function getParam(ax){return ax<3?S.p0[ax]:ax===3?S.sigma:ax===4?S.rho:S.beta;}
+function getParam(ax){
+  if(ax<3)return S.p0[ax];
+  const pi=ax-3;
+  if(dynSys&&dynSys.params&&pi<dynSys.params.length)return dynSys.params[pi].val;
+  // fallback Lorenz
+  if(ax===3)return S.sigma;if(ax===4)return S.rho;return S.beta;
+}
 function setParam(ax,v){
-  const _RP=window._RANGES||RANGES;v=Math.max(_RP[ax][0],Math.min(_RP[ax][1],v));
-  if(ax<3)S.p0[ax]=v;else if(ax===3)S.sigma=v;else if(ax===4)S.rho=v;else S.beta=v;
-  const ids=['sl_p0x','sl_p0y','sl_p0z','sl_sigma','sl_rho','sl_beta'];
-  const sl=document.getElementById(ids[ax]),nm=document.getElementById(ids[ax]+'_n');
-  if(sl){if(v<parseFloat(sl.min))sl.min=v;if(v>parseFloat(sl.max))sl.max=v;sl.value=v;track(sl);}
-  if(nm)nm.value=v.toFixed(parseFloat(sl?.step||'0.1')<.1?3:1);
+  const _RP=window._RANGES||RANGES;
+  // Don't clamp — the user clicked there intentionally. Just ensure slider bounds expand.
+  // (clamping was preventing values outside [-5,5] for p0 from being set)
+  if(ax<3){S.p0[ax]=v;const ids=['sl_p0x','sl_p0y','sl_p0z'];const sl=document.getElementById(ids[ax]);const nm=document.getElementById(ids[ax]+'_n');if(sl){if(v<parseFloat(sl.min))sl.min=v;if(v>parseFloat(sl.max))sl.max=v;sl.value=v;track(sl);}if(nm&&sl)nm.value=v.toFixed(parseFloat(sl.step||'0.1')<.1?3:1);}
+  else{
+    const pi=ax-3;
+    if(dynSys&&dynSys.params&&pi<dynSys.params.length){
+      dynSys.params[pi].val=v;
+      const sl=document.getElementById('sl_dyn'+pi);const nm=document.getElementById('sl_dyn'+pi+'_n');
+      if(sl){if(v<parseFloat(sl.min))sl.min=v;if(v>parseFloat(sl.max))sl.max=v;sl.value=v;track(sl);}
+      if(nm&&sl&&isFinite(v))nm.value=v.toFixed(parseFloat(sl.step||'0.1')<.1?3:1);
+    }
+  }
 }
 
 function drawLegend(){
-  const c=document.getElementById('lgd-bar'),ctx=c.getContext('2d'),img=ctx.createImageData(160,6);
-  for(let i=0;i<160;i++){const[r,g,b]=cmapEval(-2+(i/159)*4);for(let row=0;row<6;row++){const idx=(row*160+i)*4;img.data[idx]=r;img.data[idx+1]=g;img.data[idx+2]=b;img.data[idx+3]=255;}}
+  const cv=document.getElementById('lgd-bar');if(!cv)return;
+  const ctx=cv.getContext('2d'),img=ctx.createImageData(160,6);
+  const lo=-0.1,hi=0.1;
+  for(let i=0;i<160;i++){const[r,g,b]=cmapEval(lo+(i/159)*(hi-lo));for(let row=0;row<6;row++){const idx=(row*160+i)*4;img.data[idx]=r;img.data[idx+1]=g;img.data[idx+2]=b;img.data[idx+3]=255;}}
   ctx.putImageData(img,0,0);
+  const loEl=document.getElementById('lgd-lo'),hiEl=document.getElementById('lgd-hi');
+  if(loEl)loEl.textContent=lo.toFixed(1);if(hiEl)hiEl.textContent='+'+hi.toFixed(1);
 }
 
-// ════════════ THREE.JS TRAJECTORY ══════════════════════════════
 let trajSc,trajCam,trajR,trajCtrl,trajLine;
 function initTraj(){
   const wrap=document.getElementById('traj-wrap');
@@ -1691,7 +1727,7 @@ function renderTrajectory(){
   const eps=Math.pow(10,CS.epsExp);
   const _bp=getBaseArr();
   let px=x+eps*CS.pert[0], py=y+eps*CS.pert[1], pz=z+eps*CS.pert[2], vMin=Infinity, vMax=-Infinity;
-  
+
   for(let i=0;i<N;i++){
     pts[i*3]=x;pts[i*3+1]=y;pts[i*3+2]=z;cx+=x;cy+=y;cz+=z;
     const [nx,ny,nz]=sysStep(x,y,z,_bp,S.dt);
@@ -1710,18 +1746,41 @@ function renderTrajectory(){
     vals[i]=val;if(val<vMin)vMin=val;if(val>vMax)vMax=val;
     x=nx;y=ny;z=nz;
   }
-  
-  const _sc=CS.cmap;CS.cmap=_trajCmap;
-  for(let i=0;i<N;i++){const t=vMax>vMin?(vals[i]-vMin)/(vMax-vMin):0;const[r,g,b]=cmapEval(-2+t*4);col[i*3]=r/255;col[i*3+1]=g/255;col[i*3+2]=b/255;}
-  CS.cmap=_sc;
-  
+
+  // Trajectory coloring: pure HSV(t,0.85,0.85) independent of map colormap/scaling
+  // t=[0,1] maps normalized val range to hue 0→300 (red→purple→blue)
+  function trajCmapRaw(t){
+    if(_trajCmap==='solid'){
+      // Use theme accent color - read from CSS var
+      return [null,null,null,'solid']; // handled below
+    }
+    if(_trajCmap==='hsv'){return hsv2rgb(t*300,85,85);}
+    if(_trajCmap==='inferno'){return lut(LUTS.inferno,t);}
+    if(_trajCmap==='plasma'){return lut(LUTS.plasma,t);}
+    if(_trajCmap==='viridis'){return lut(LUTS.viridis,t);}
+    if(_trajCmap==='coolwarm'){return lut(LUTS.coolwarm,t);}
+    return trajHSV(t); // default
+  }
+  // Fill col[] — for solid+tube, this still fills col for the tube UV mapping
+  if(_trajCmap==='solid'){
+    const acStr=getComputedStyle(document.documentElement).getPropertyValue('--ac').trim()||'#4d88ff';
+    const hr=parseInt(acStr.slice(1,3),16)/255,hg=parseInt(acStr.slice(3,5),16)/255,hb=parseInt(acStr.slice(5,7),16)/255;
+    for(let i=0;i<N;i++){col[i*3]=hr;col[i*3+1]=hg;col[i*3+2]=hb;}
+  } else {
+    for(let i=0;i<N;i++){
+      const t=vMax>vMin?(vals[i]-vMin)/(vMax-vMin):0.5;
+      const[r,g,b]=trajCmapRaw(t);
+      col[i*3]=r/255;col[i*3+1]=g/255;col[i*3+2]=b/255;
+    }
+  }
+
   cx/=N;cy/=N;cz/=N;
   for(let i=0;i<N;i++){
     pts[i*3]   = (pts[i*3]-cx) * CS.trajScale[0];
     pts[i*3+1] = (pts[i*3+1]-cy) * CS.trajScale[1];
     pts[i*3+2] = (pts[i*3+2]-cz) * CS.trajScale[2];
   }
-  
+
   if(CS.trajStyle === 'tube' && N > 2) {
     const curvePts =[];
     for(let i=0; i<N; i++) curvePts.push(new THREE.Vector3(pts[i*3], pts[i*3+1], pts[i*3+2]));
@@ -1730,7 +1789,7 @@ function renderTrajectory(){
     const uvs = tubeGeo.attributes.uv.array;
     const colors = new Float32Array((uvs.length/2) * 3);
     for(let i=0; i<uvs.length/2; i++) {
-        const t = uvs[i*2]; 
+        const t = uvs[i*2];
         let ptIdx = Math.floor(t * (N-1));
         if(ptIdx < 0) ptIdx = 0; if(ptIdx >= N) ptIdx = N-1;
         colors[i*3] = col[ptIdx*3]; colors[i*3+1] = col[ptIdx*3+1]; colors[i*3+2] = col[ptIdx*3+2];
@@ -1741,13 +1800,19 @@ function renderTrajectory(){
   } else {
     const geo=new THREE.BufferGeometry();
     geo.setAttribute('position',new THREE.BufferAttribute(pts,3));
-    geo.setAttribute('color',new THREE.BufferAttribute(col,3));
-    trajLine=new THREE.Line(geo,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9}));
+    let lineMat;
+    if(_trajCmap==='solid'){
+      const acStr=getComputedStyle(document.documentElement).getPropertyValue('--ac').trim()||'#4d88ff';
+      lineMat=new THREE.LineBasicMaterial({color:acStr,transparent:true,opacity:.9});
+    } else {
+      geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+      lineMat=new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9});
+    }
+    trajLine=new THREE.Line(geo,lineMat);
   }
   trajSc.add(trajLine);
 }
 
-// ════════════ TOGGLES ══════════════════════════════════════════
 function tog(btn,key){
   btn.classList.toggle('on');const on=btn.classList.contains('on');
   if(key==='ax'){showAx=on;document.getElementById('axX').style.display=on&&!mapMode3D?'flex':'none';document.getElementById('axY').style.display=on&&!mapMode3D?'flex':'none';}
@@ -1785,18 +1850,28 @@ function tog(btn,key){
   }
 }
 
-// ════════════ HOME ══════════════════════════════════════════════
 function doHome(){
-  const _R=window._RANGES||RANGES;bounds={lox:_R[S.lax_x][0],hix:_R[S.lax_x][1],loy:_R[S.lax_y][0],hiy:_R[S.lax_y][1]};
+  const _R=window._RANGES||RANGES;
   const mw=document.getElementById('map-wrap');
-  if(mw.clientWidth>0)adjustBoundsForAR(bounds,mapStretch1,mw.clientWidth,mw.clientHeight);
+  const W=mw.clientWidth||800, H=mw.clientHeight||600;
+  // Guard: clamp lax to valid range indices
+  const nR=_R.length;
+  if(S.lax_x>=nR||!_R[S.lax_x])S.lax_x=Math.min(3,nR-1);
+  if(S.lax_y>=nR||!_R[S.lax_y])S.lax_y=(S.lax_x===0)?1:0;
+  if(S.lax_y===S.lax_x)S.lax_y=(S.lax_x===0)?1:0;
+  const rx=_R[S.lax_x]||[-5,5], ry=_R[S.lax_y]||[-5,5];
+  // Square grid: equal world-units per pixel on both axes
+  const xFull=rx[1]-rx[0], yFull=ry[1]-ry[0];
+  const xMid=(rx[0]+rx[1])/2, yMid=(ry[0]+ry[1])/2;
+  const ppu=Math.min(W/Math.max(xFull,0.001), H/Math.max(yFull,0.001));
+  const xSpan=W/ppu, ySpan=H/ppu;
+  bounds={lox:xMid-xSpan/2,hix:xMid+xSpan/2,loy:yMid-ySpan/2,hiy:yMid+ySpan/2};
   cursor[0]=(getParam(S.lax_x)-bounds.lox)/(bounds.hix-bounds.lox);
   cursor[1]=(getParam(S.lax_y)-bounds.loy)/(bounds.hiy-bounds.loy);
   renderWebGL();renderWebGL2();updateUIOverlay();
   if(mapMode3D){updateXsecUI();triggerMap3D();}
 }
 
-// ════════════ SETTINGS ══════════════════════════════════════════
 function onNanPick(inp){
   const hx=inp.value;
   CS.nanR=parseInt(hx.slice(1,3),16)/255;CS.nanG=parseInt(hx.slice(3,5),16)/255;CS.nanB=parseInt(hx.slice(5,7),16)/255;
@@ -1840,10 +1915,9 @@ function setIntegrator(mode){
 }
 function closeSettings(){document.getElementById('settings-modal').classList.remove('open');}
 
-// ═══════ COLOR & TRAJ PANELS ═════════════════════════════════════
 let _colorPanelOpen=false;
 let _trajPanelOpen=false;
-let _trajCmap='desmos';
+let _trajCmap='hsv';
 
 function toggleColorPanel(){
   _colorPanelOpen=!_colorPanelOpen;
@@ -1853,15 +1927,16 @@ function toggleColorPanel(){
   panel.style.display=_colorPanelOpen?'flex':'none';
   if(_colorPanelOpen){
     buildPresetGrid();
-    _updateColorBars();['sl_stretch','sl_logmix','sl_offset','sl_clm','sl_clh','nan-asl'].forEach(id=>{
+    _updateColorBars();['sl_linscale','sl_stretch','sl_logmix','sl_offset','sl_clm','sl_clh','nan-asl'].forEach(id=>{
       const sl=document.getElementById(id);if(sl){track(sl);}
     });
     const sv=document.getElementById('sat_v');if(sv)sv.value=CS.sat.toFixed(2);
+    const lsv=document.getElementById('linscale_v');if(lsv)lsv.value=(CS.linScale||1).toFixed(2);
     const stv=document.getElementById('stretch_v');if(stv)stv.value=(CS.stretch||1).toFixed(2);
-    const lv=document.getElementById('logmix_v');if(lv)lv.value=CS.logmix.toFixed(2);
-    const ov=document.getElementById('offset_v');if(ov)ov.value=CS.offset.toFixed(2);
+    const lv=document.getElementById('logmix_v');if(lv)lv.value=(CS.logmix??0).toFixed(2);
+    const ov=document.getElementById('offset_v');if(ov)ov.value=(CS.offset??0).toFixed(2);
     const clmv=document.getElementById('clm_v');if(clmv)clmv.value=CS.clM;
-    const clhv=document.getElementById('clh_v');if(clhv)clhv.value=CS.clH.toFixed(2);
+    const clhv=document.getElementById('clh_v');if(clhv)clhv.value=(CS.clH??1).toFixed(2);
     const btnI=document.getElementById('btn-invert');if(btnI)btnI.classList.toggle('on', CS.invertColor>0);
   }
 }
@@ -1911,37 +1986,62 @@ function onTrajThick(sl) {
   if(CS.trajStyle === 'tube') renderTrajectory();
 }
 
+function _fillBar(canvas,cmapFn){
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height;
+  const img=ctx.createImageData(W,H);
+  const lo=-0.1,hi=0.1;
+  for(let x=0;x<W;x++){
+    const [r,g,b]=cmapFn(lo+(x/(W-1))*(hi-lo));
+    for(let y=0;y<H;y++){const i=(y*W+x)*4;img.data[i]=r;img.data[i+1]=g;img.data[i+2]=b;img.data[i+3]=255;}
+  }
+  ctx.putImageData(img,0,0);
+}
 function _updateColorBars(){
-  const c1=document.getElementById('lgd-mini');
-  if(c1){const ctx=c1.getContext('2d'),img=ctx.createImageData(c1.width,c1.height);
-    for(let x=0;x<c1.width;x++){const[r,g,b]=cmapEval(-2+(x/(c1.width-1))*4);for(let y=0;y<c1.height;y++){const i=(y*c1.width+x)*4;img.data[i]=r;img.data[i+1]=g;img.data[i+2]=b;img.data[i+3]=255;}}
-    ctx.putImageData(img,0,0);}
+  // Map color bar - full pipeline
+  _fillBar(document.getElementById('lgd-mini'),v=>cmapEval(v));
+  // Also update the on-map legend bars
+  drawLegend();drawLegend2();
+  // Traj color bar - uses traj cmap, no post-processing
   const c2=document.getElementById('traj-lgd-mini');
-  if(c2){const ctx=c2.getContext('2d'),img=ctx.createImageData(c2.width,c2.height);
-    const saved=CS.cmap;CS.cmap=_trajCmap;
-    for(let x=0;x<c2.width;x++){const[r,g,b]=cmapEval(-2+(x/(c2.width-1))*4);for(let y=0;y<c2.height;y++){const i=(y*c2.width+x)*4;img.data[i]=r;img.data[i+1]=g;img.data[i+2]=b;img.data[i+3]=255;}}
-    CS.cmap=saved;ctx.putImageData(img,0,0);}
+  if(c2){
+    if(_trajCmap==='solid'){
+      const ctx=c2.getContext('2d'),W=c2.width,H=c2.height;
+      const acStr=getComputedStyle(document.documentElement).getPropertyValue('--ac').trim()||'#4d88ff';
+      ctx.fillStyle=acStr;ctx.fillRect(0,0,W,H);
+    } else {
+      _fillBar(c2,t=>{
+        const nt=(t+0.1)/0.2; // map -0.1..0.1 → 0..1
+        const tc=Math.max(0,Math.min(1,nt));
+        if(_trajCmap==='hsv')return hsv2rgb(tc*300,85,85);
+        if(_trajCmap==='inferno')return lut(LUTS.inferno,tc);
+        if(_trajCmap==='plasma')return lut(LUTS.plasma,tc);
+        if(_trajCmap==='viridis')return lut(LUTS.viridis,tc);
+        if(_trajCmap==='coolwarm')return lut(LUTS.coolwarm,tc);
+        return hsv2rgb(tc*300,85,85);
+      });
+    }
+  }
 }
 
-function onStretch(sl){
+function onLinScale(sl){
+  CS.linScale=parseFloat(sl.value);track(sl);
+  const v=document.getElementById('linscale_v');if(v&&document.activeElement!==v)v.value=CS.linScale.toFixed(2);
+  renderWebGL();renderWebGL2();updatePlanesUniforms();_updateColorBars();
+}
+function onStretch(sl){_updateColorBars();
   CS.stretch=parseFloat(sl.value);track(sl);
   const v=document.getElementById('stretch_v');if(v && document.activeElement !== v)v.value=CS.stretch.toFixed(2);
   renderWebGL();renderWebGL2(); updatePlanesUniforms();
 }
 function onTrajCmap(sel){_trajCmap=sel.value;renderTrajectory();_updateColorBars();}
 
-// ════════════════════════════════════════════════════════════════════════════
-// ════ DYNAMIC EQUATION SYSTEM ═══════════════════════════════════════════════
-// ════════════════════════════════════════════════════════════════════════════
-
-// ── Helper: get 12-element base array from current state ─────────────────
 function getBaseArr(){
   const a=[S.p0[0],S.p0[1],S.p0[2],0,0,0,0,0,0,0,0,0];
   if(dynSys&&dynSys.params){dynSys.params.forEach((p,i)=>{if(i<9)a[3+i]=p.val;});}
   return a;
 }
 
-// ── dynSys state ──────────────────────────────────────────────────────────
 let dynSys={
   name:'Lorenz',
   eqLatex:['\\sigma(y-x)','x(\\rho-z)-y','xy-\\beta z'],
@@ -1956,12 +2056,7 @@ dynSys._cpuFn=function(x,y,z,p,dt){
   const sg=p[3],ro=p[4],bt=p[5];
   return lorenzStep(x,y,z,sg,ro,bt,dt);
 };
-// Keep S.sigma/rho/beta in sync for backward compat
-Object.defineProperty(S,'sigma',{get:()=>dynSys.params[0]?.val??10, set:v=>{if(dynSys.params[0])dynSys.params[0].val=v;}, configurable:true});
-Object.defineProperty(S,'rho',  {get:()=>dynSys.params[1]?.val??28, set:v=>{if(dynSys.params[1])dynSys.params[1].val=v;}, configurable:true});
-Object.defineProperty(S,'beta', {get:()=>dynSys.params[2]?.val??(8/3), set:v=>{if(dynSys.params[2])dynSys.params[2].val=v;}, configurable:true});
 
-// ── System presets ────────────────────────────────────────────────────────
 const SYS_PRESETS={
   lorenz:{
     name:'Lorenz',
@@ -2097,7 +2192,6 @@ const SYS_PRESETS={
     p0:[0.349,0,0.16], lax_x:3, lax_y:4
   }};
 
-// ── LaTeX-equation → GLSL sys_d compiler ────────────────────────────────
 class EqParser{
   constructor(src,ctx){
     // strip leading label "dx/dt=" etc.
@@ -2109,14 +2203,6 @@ class EqParser{
   peek(){return this.s[this.i]||'';}
   eat(){return this.s[this.i++]||'';}
   ws(){while(/\s/.test(this.s[this.i]))this.i++;}
-
-  // ── grammar ─────────────────────────────────────────────────────────
-  // expr     = term  (('+' | '-') term)*
-  // term     = impl  (('*' | '/' | \cdot) impl)*
-  // impl     = power power*          ← implicit multiplication
-  // power    = unary ('^' unary)?
-  // unary    = '-' unary | atom
-  // atom     = number | '(' expr ')' | func(args) | variable | \cmd
 
   parse(){return this.expr();}
 
@@ -2330,6 +2416,12 @@ function compileEquations(latexEqs){
   // Build CPU integrator
   const cpuBody=`
     const [_P3,_P4,_P5,_P6,_P7,_P8,_P9,_P10,_P11]=p.slice(3,12);
+    // Math aliases so GLSL-style names work in JS
+    const pow=Math.pow,sqrt=Math.sqrt,abs=Math.abs,sin=Math.sin,cos=Math.cos,
+          tan=Math.tan,exp=Math.exp,log=Math.log,floor=Math.floor,ceil=Math.ceil,
+          fract=x=>x-Math.floor(x),sign=Math.sign,min=Math.min,max=Math.max,
+          clamp=(v,lo,hi)=>Math.min(Math.max(v,lo),hi),
+          mod=(a,b)=>a-b*Math.floor(a/b);
     function _d(x,y,z){
       const dx=(${exprs[0]}),dy=(${exprs[1]}),dz=(${exprs[2]});
       return[isFinite(dx)?dx:0,isFinite(dy)?dy:0,isFinite(dz)?dz:0];
@@ -2352,8 +2444,6 @@ function compileEquations(latexEqs){
   return{exprs,params,sysD,cpuFn,error:null};
 }
 
-
-// ── Apply a compiled system ──────────────────────────────────────────────
 function applySysResult(preset,compiled,paramVals){
   // Merge param values from preset or paramVals override
   const params=compiled.params.map((p,i)=>{
@@ -2361,7 +2451,7 @@ function applySysResult(preset,compiled,paramVals){
     const override=paramVals&&paramVals[p.name];
     return{
       ...p,
-      val:override!==undefined?override:(pp?pp.val:p.val),
+      val:override!=null?override:(pp&&pp.val!=null?pp.val:(p.val!=null?p.val:0)),
       range:pp?pp.range:p.range,
       step:pp?pp.step:p.step,
     };
@@ -2397,27 +2487,42 @@ function applySysResult(preset,compiled,paramVals){
     const sl=document.getElementById(id);
     if(sl){sl.value=S.p0[i];track(sl);}
     const nm=document.getElementById(id+'_n');
-    if(nm)nm.value=S.p0[i].toFixed(1);
+    if(nm&&S.p0[i]!=null)nm.value=(+S.p0[i]).toFixed(1);
   });
   doHome();renderWebGL();renderWebGL2();renderTrajectory();
   if(mapMode3D){triggerMap3D();}
 }
 
-// ── Rebuild param sliders ─────────────────────────────────────────────────
 function buildParamSliders(g){
-  if(!g)return;
-  // Remove existing sliders (all children except header)
+  if(!g){console.warn('buildParamSliders: g is null');return;}
+  // clear everything after the header (first child)
   while(g.children.length>1)g.removeChild(g.lastChild);
+  if(!dynSys||!Array.isArray(dynSys.params)||dynSys.params.length===0){
+    // No params — add a note
+    const note=document.createElement('div');
+    note.style.cssText='font-size:10px;color:var(--muted);padding:4px 0;font-family:DM Mono,monospace';
+    note.textContent='no parameters';
+    g.appendChild(note);
+    return;
+  }
   dynSys.params.forEach((p,i)=>{
-    addSl(g,'sl_dyn'+i,p.latex,p.range[0],p.range[1],p.step,p.val,v=>{
-      dynSys.params[i].val=v;
+    if(!p||typeof p!=='object')return;
+    const lo=(p.range&&p.range[0]!=null)?p.range[0]:-20;
+    const hi=(p.range&&p.range[1]!=null)?p.range[1]:20;
+    const stp=p.step||0.1;
+    const v0=isFinite(p.val)?p.val:0;
+    const tex=p.latex||p.name||('p'+i);
+    addSl(g,'sl_dyn'+i,tex,lo,hi,stp,v0,v=>{
+      if(dynSys&&dynSys.params&&dynSys.params[i])dynSys.params[i].val=v;
       renderWebGL();renderWebGL2();renderTrajectory();if(mapMode3D)triggerMap3D();
     });
   });
 }
-function rebuildParamSliders(g){buildParamSliders(g);}
+function rebuildParamSliders(g){
+  if(!g)g=document.getElementById('cg-sys');
+  buildParamSliders(g);
+}
 
-// ── Rebuild axis selectors ────────────────────────────────────────────────
 function rebuildAxesSelectors(){
   const syms=window._SYMS||SYMS;
   const latexs=window._LATEXS||LATEXS;
@@ -2452,7 +2557,6 @@ function rebuildAxesSelectors(){
   if(ky)K(latexs[S.lax_y]||'y',ky);
 }
 
-// ── System name badge ─────────────────────────────────────────────────────
 function updateSysBadge(){
   const btn=document.getElementById('sys-name-btn');
   if(btn)btn.textContent=dynSys.name;
@@ -2460,7 +2564,6 @@ function updateSysBadge(){
   if(hdr){K('\\dot{x}='+dynSys.eqLatex[0]+',\\enspace\\dot{y}='+dynSys.eqLatex[1]+',\\enspace\\dot{z}='+dynSys.eqLatex[2],hdr);}
 }
 
-// ── Load a preset by key ──────────────────────────────────────────────────
 function loadSysPreset(key,silently){
   const pr=SYS_PRESETS[key];if(!pr)return;
   try{
@@ -2477,16 +2580,17 @@ function loadSysPreset(key,silently){
         cp.name=pr.params[i].name;
       }
     });
-    applySysResult(pr,r,null);
     if(pr.p0){S.p0=[...pr.p0];}
     if(pr.lax_x!==undefined)S.lax_x=pr.lax_x;
     if(pr.lax_y!==undefined)S.lax_y=pr.lax_y;
+    applySysResult(pr,r,null);
     if(!silently){
       // sync eq editor inputs
       for(let i=0;i<3;i++){
         const el=document.getElementById('eq-in-'+i);
         if(el){el.value=pr.eqs[i];onEqInput(i,el);}
       }
+      _pendingParams=dynSys.params.map(p=>({...p}));
       buildEqParamList();
       highlightEqPreset(key);
     }
@@ -2494,7 +2598,6 @@ function loadSysPreset(key,silently){
   }catch(e){console.error(e);}
 }
 
-// ── Equation editor UI ───────────────────────────────────────────────────
 let _eqModal=false;
 let _pendingEqs=['\\sigma(y-x)','x(\\rho-z)-y','xy-\\beta z'];
 let _pendingParams=[];
@@ -2543,14 +2646,20 @@ function _refreshEqPreview(){
   const errEl=document.getElementById('eq-error');
   try{
     const r=compileEquations(_pendingEqs);
-    // Update param list with current values
     _pendingParams=r.params.map(p=>{
+      const prev=_pendingParams.find(pp=>pp.name===p.name);
+      if(prev){p.val=prev.val??0;p.range=prev.range||[-20,20];p.step=prev.step||0.1;return p;}
       const existing=dynSys.params.find(ep=>ep.name===p.name);
-      if(existing)p.val=existing.val;
+      if(existing){p.val=existing.val??0;p.range=existing.range||[-20,20];p.step=existing.step||0.1;return p;}
+      for(const pr of Object.values(SYS_PRESETS)){
+        const pp=pr.params&&pr.params.find(pp2=>pp2.name===p.name);
+        if(pp){p.val=pp.val??0;p.range=pp.range||[-20,20];p.step=pp.step||0.1;break;}
+      }
+      p.val=p.val??0;
       return p;
     });
     buildEqParamList();
-    if(errEl){errEl.style.display='none';}
+    if(errEl)errEl.style.display='none';
   }catch(e){
     if(errEl){errEl.textContent=String(e);errEl.style.display='block';}
   }
@@ -2566,7 +2675,7 @@ function buildEqParamList(){
     const sep=document.createElement('span');sep.textContent='=';sep.style.cssText='color:var(--muted);margin:0 2px';
     const val=document.createElement('input');
     val.type='number';val.className='eq-param-val';
-    val.value=parseFloat(p.val.toFixed(4));val.step=p.step||0.1;
+    val.value=parseFloat((p.val??0).toFixed(4));val.step=p.step||0.1;
     val.addEventListener('change',function(){
       const v=parseFloat(this.value);if(!isNaN(v))_pendingParams[i].val=v;
     });
@@ -2611,13 +2720,11 @@ function highlightEqPreset(key){
   });
 }
 
-// ── RANGES/SYMS/LATEXS: patch getters used by axis selectors ─────────────
 // Override the module-scope RANGES/SYMS/LATEXS to use dynamic versions
 Object.defineProperty(window,'RANGES',{
   get(){return window._RANGES||[[-5,5],[-5,5],[-5,5],[0.5,30],[0.5,60],[0.1,8]]},
   configurable:true
 });
-
 
 window.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT')return;
@@ -2654,7 +2761,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(ho)ho.addEventListener('click',e=>{if(e.target===ho)closeHelp();});
 });
 
-// ════ COLOR PRESET UI ════════════════════════════════════════
 function buildPresetGrid(){
   const grid=document.getElementById('preset-grid');
   if(!grid)return;
@@ -2664,9 +2770,7 @@ function buildPresetGrid(){
     btn.className='preset-btn'+(key===_cmapKey?' active':'');
     btn.dataset.key=key;
     const nameEl=document.createElement('span');nameEl.className='pb-name';nameEl.textContent=pr.name;
-    const eqEl=document.createElement('span');eqEl.className='pb-eq';
-    if(pr.latex){try{katex.render(pr.latex,eqEl,{throwOnError:false,displayMode:false});}catch(e){eqEl.textContent=pr.latex;}}
-    btn.append(nameEl,eqEl);
+    btn.append(nameEl);
     btn.onclick=()=>{
       document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
@@ -2784,7 +2888,8 @@ function applyTheme(id){
 
 function resetDefaults(){
   Object.assign(S,JSON.parse(JSON.stringify(DEFS)));
-  CS.sat=1;CS.stretch=1;CS.logmix=0;CS.offset=0;CS.epsExp=-6;CS.clM=150;CS.clH=0.4;CS.invertColor=0;
+  CS.sat=1;CS.stretch=0.15;CS.logmix=0;CS.offset=0;CS.epsExp=-6;CS.clM=400;CS.clH=1.0;CS.invertColor=0;
+  CS.nanR=1.0;CS.nanG=0.35;CS.nanB=0.0;CS.nanA=0.0;CS.linScale=40;
   CS.pert=[1,0,0];CS.trajStyle='line';CS.trajThickness=0.5;
   CS.m3d_planes_en=[true,false,false];CS.m3d_plane_counts=[15,15,15];CS.m3d_planes_steps=200;CS.m3d_planes_opacity=0.5;
   CS.integrator='euler';
@@ -2792,13 +2897,14 @@ function resetDefaults(){
   // Reset UI scale
   onUIScaleReset();
   // Sync sliders
-  ['sl_sat','sl_stretch','sl_logmix','sl_offset','sl_eps','sl_clm','sl_clh','traj-thick-sl'].forEach(id=>{
+  ['sl_sat','sl_linscale','sl_stretch','sl_logmix','sl_offset','sl_eps','sl_clm','sl_clh','traj-thick-sl'].forEach(id=>{
     const sl=document.getElementById(id);if(!sl)return;
-    const vals={sl_sat:'1',sl_stretch:'1',sl_logmix:'0',sl_offset:'0',sl_eps:'-6',sl_clm:'150',sl_clh:'0.4','traj-thick-sl':'0.5'};
+    const vals={sl_sat:'1','sl_linscale':'40',sl_stretch:'0.15',sl_logmix:'0',sl_offset:'0',sl_eps:'-6',sl_clm:'400',sl_clh:'1.0','traj-thick-sl':'0.5'};
     sl.value=vals[id]??'0';track(sl);
   });
-  loadSysPreset('lorenz',true);[{id:'sl_sigma',v:S.sigma},{id:'sl_rho',v:S.rho},{id:'sl_beta',v:S.beta},
-   {id:'sl_dt',v:S.dt},{id:'sl_n',v:S.n_steps},
+  loadSysPreset('lorenz');  // reloads Lorenz with correct param values + rebuilds sliders
+  // sync integration + p0 sliders
+  [{id:'sl_dt',v:S.dt},{id:'sl_n',v:S.n_steps},
    {id:'sl_p0x',v:S.p0[0]},{id:'sl_p0y',v:S.p0[1]},{id:'sl_p0z',v:S.p0[2]}].forEach(({id,v})=>{
     const sl=document.getElementById(id),nm=document.getElementById(id+'_n');
     if(sl){sl.value=v;track(sl);}if(nm)nm.value=v;
@@ -2830,34 +2936,33 @@ function onNumChange(numInp, rangeId, cb) {
   if(isNaN(v)) return;
   if(v < parseFloat(sl.min)) sl.min = v;
   if(v > parseFloat(sl.max)) sl.max = v;
-  sl.value = v; 
-  track(sl); 
+  sl.value = v;
+  track(sl);
   cb(sl);
 }
-function onSat(sl){CS.sat=parseFloat(sl.value);track(sl);const v=document.getElementById('sat_v');if(v&&document.activeElement!==v)v.value=CS.sat.toFixed(2);renderWebGL();renderWebGL2();updatePlanesUniforms();}
-function onLogmix(sl){CS.logmix=parseFloat(sl.value);track(sl);const v=document.getElementById('logmix_v');if(v&&document.activeElement!==v)v.value=CS.logmix.toFixed(2);renderWebGL();renderWebGL2();updatePlanesUniforms();}
-function onOffset(sl){CS.offset=parseFloat(sl.value);track(sl);const v=document.getElementById('offset_v');if(v&&document.activeElement!==v)v.value=CS.offset.toFixed(2);renderWebGL();renderWebGL2();updatePlanesUniforms();}
+function onSat(sl){CS.sat=parseFloat(sl.value);track(sl);const v=document.getElementById('sat_v');if(v&&document.activeElement!==v)v.value=CS.sat.toFixed(2);renderWebGL();renderWebGL2();updatePlanesUniforms();};_updateColorBars();
+function onLogmix(sl){CS.logmix=parseFloat(sl.value);track(sl);const v=document.getElementById('logmix_v');if(v&&document.activeElement!==v)v.value=CS.logmix.toFixed(2);renderWebGL();renderWebGL2();updatePlanesUniforms();};_updateColorBars();
+function onOffset(sl){CS.offset=parseFloat(sl.value);track(sl);const v=document.getElementById('offset_v');if(v&&document.activeElement!==v)v.value=CS.offset.toFixed(2);renderWebGL();renderWebGL2();updatePlanesUniforms();};_updateColorBars();
 function onEps(sl){
   CS.epsExp=parseFloat(sl.value);track(sl);
   renderWebGL();renderWebGL2();if(mapMode3D)triggerMap3D(); renderTrajectory();
 }
-function onClm(sl){CS.clM=parseFloat(sl.value);track(sl);const v=document.getElementById('clm_v');if(v&&document.activeElement!==v)v.value=~~CS.clM;buildCmapTex();renderWebGL();renderWebGL2();drawLegend();if(mapMode3D){rebuildM3DCmapTex();triggerMap3D();}}
-function onClh(sl){CS.clH=parseFloat(sl.value);track(sl);const v=document.getElementById('clh_v');if(v&&document.activeElement!==v)v.value=CS.clH.toFixed(2);buildCmapTex();renderWebGL();renderWebGL2();drawLegend();if(mapMode3D){rebuildM3DCmapTex();triggerMap3D();}}
+function onClm(sl){CS.clM=parseFloat(sl.value);track(sl);const v=document.getElementById('clm_v');if(v&&document.activeElement!==v)v.value=~~CS.clM;buildCmapTex();renderWebGL();renderWebGL2();drawLegend();if(mapMode3D){rebuildM3DCmapTex();triggerMap3D();}};_updateColorBars();
+function onClh(sl){CS.clH=parseFloat(sl.value);track(sl);const v=document.getElementById('clh_v');if(v&&document.activeElement!==v)v.value=CS.clH.toFixed(2);buildCmapTex();renderWebGL();renderWebGL2();drawLegend();if(mapMode3D){rebuildM3DCmapTex();triggerMap3D();}};_updateColorBars();
 
-// ════════════ CONTROLS ══════════════════════════════════════════
 function addSl(parent,id,tex,min,max,step,val,cb){
   const w=document.createElement('div');w.className='sl';
   const hd=document.createElement('div');hd.className='sl-hd';
   const lbl=document.createElement('span');lbl.className='sl-k';K(tex,lbl);
-  const num=document.createElement('input');Object.assign(num,{type:'number',className:'sl-num',value:val,step,id:id+'_n'});
+  const num=document.createElement('input');num.type='number';num.className='sl-num';num.step=step;num.id=id+'_n';num.value=val;
   hd.append(lbl,num);
-  const sl=document.createElement('input');Object.assign(sl,{type:'range',id,min,max,step,value:val});track(sl);
+  const sl=document.createElement('input');sl.type='range';sl.id=id;sl.min=min;sl.max=max;sl.step=step;sl.value=val;track(sl);
   num.addEventListener('change',function(){
     let v=parseFloat(this.value);if(isNaN(v))return;
     if(v<parseFloat(sl.min))sl.min=v;if(v>parseFloat(sl.max))sl.max=v;
     sl.value=v;track(sl);cb(v);
   });
-  sl.addEventListener('input',function(){const v=parseFloat(this.value);num.value=v;track(this);cb(v);});
+  sl.addEventListener('input',function(){const v=parseFloat(this.value);if(isFinite(v))num.value=v;track(this);cb(v);});
   w.append(hd,sl);parent.appendChild(w);
 }
 
@@ -3006,7 +3111,6 @@ function buildControls(){
   const spacer=document.createElement('div');spacer.style='flex:1;min-width:12px';bar.appendChild(spacer);
 }
 
-// ════════════ RESIZE ════════════════════════════════════════════
 function resizeAll(){
   const dpr=devicePixelRatio*mapResolution;
   const mw=document.getElementById('map-wrap');
@@ -3032,16 +3136,14 @@ function resizeAll(){
 }
 window.addEventListener('resize',resizeAll);
 
-// ════════════ BOOT ══════════════════════════════════════════════
 // System equations rendered by updateSysBadge()
 K('\\lambda=\\frac{1}{N}\\ln\\!\\left|\\frac{\\|\\delta_N\\|}{\\varepsilon}\\right|',document.getElementById('h-lyap'));
 K('\\lambda(P,A)',document.getElementById('pb-lyap'));K('(x,y,z)(t)',document.getElementById('pb-traj'));
 {const _L=window._LATEXS||LATEXS;K(_L[S.lax_x],document.getElementById('axXk'));K(_L[S.lax_y],document.getElementById('axYk'));}
 {const _S=window._SYMS||SYMS;document.getElementById('ctip-x').textContent=_S[S.lax_x]+'=';document.getElementById('ctip-y').textContent=_S[S.lax_y]+'=';}
 function Ks(tex,id){const el=document.getElementById(id);if(el)K(tex,el);}
-Ks('m','lbl-clm');Ks('h','lbl-clh');
+Ks('\\text{Exposure}','lbl-clm');Ks('\\text{Scale}','lbl-clh');
 ['sl_clm','sl_clh'].forEach(id=>{const sl=document.getElementById(id);if(sl)track(sl);});
-// ════ EXPORT ════════════════════════════════════════════════════
 let _exportOpen=false;
 let _expResScale=2.0;
 
@@ -3075,7 +3177,7 @@ function doExport(){
   const H=Math.round(mw.clientHeight*_expResScale*devicePixelRatio);
   // Off-screen canvas
   const oc=document.createElement('canvas');oc.width=W;oc.height=H;
-  const ogl=oc.getContext('webgl2',{antialias:false,preserveDrawingBuffer:true,alpha:false});
+  const ogl=oc.getContext('webgl2',{antialias:false,preserveDrawingBuffer:true,alpha:true,premultipliedAlpha:false});
   if(!ogl){alert('WebGL2 not available for export');return;}
   // Build fresh program
   const ovs=ogl.createShader(ogl.VERTEX_SHADER);
@@ -3100,19 +3202,12 @@ in vec2 pos;out vec2 vUv;void main(){vUv=pos*.5+.5;gl_Position=vec4(pos,0.,1.);}
     pert:ogl.getUniformLocation(op,'u_pert'),logmix:ogl.getUniformLocation(op,'u_logmix'),
     offset:ogl.getUniformLocation(op,'u_offset'),sat:ogl.getUniformLocation(op,'u_sat'),
     eps:ogl.getUniformLocation(op,'u_eps'),stretch:ogl.getUniformLocation(op,'u_stretch'),
+    linScale:ogl.getUniformLocation(op,'u_linScale'),
+    clM:ogl.getUniformLocation(op,'u_clM'),clH:ogl.getUniformLocation(op,'u_clH'),
     nan:ogl.getUniformLocation(op,'u_nan')};
-  ogl.clearColor(CS.nanR,CS.nanG,CS.nanB,Math.max(CS.nanA,0.01));ogl.clear(ogl.COLOR_BUFFER_BIT);
-  ogl.uniform1fv(ul.base,getBaseArr());
-  ogl.uniform1i(ul.ax_x,S.lax_x);ogl.uniform1i(ul.ax_y,S.lax_y);
-  ogl.uniform1f(ul.lox,bounds.lox);ogl.uniform1f(ul.hix,bounds.hix);
-  ogl.uniform1f(ul.loy,bounds.loy);ogl.uniform1f(ul.hiy,bounds.hiy);
-  ogl.uniform1f(ul.dt,S.dt);ogl.uniform1i(ul.steps,S.n_steps);
-  ogl.uniform1i(ul.invert,CS.invertColor);ogl.uniform1i(ul.rk4,CS.integrator==='rk4'?1:0);
-  ogl.uniform3fv(ul.pert,CS.pert);
-  ogl.uniform1f(ul.logmix,CS.logmix);ogl.uniform1f(ul.offset,CS.offset);
-  ogl.uniform1f(ul.sat,CS.sat);ogl.uniform1f(ul.stretch,CS.stretch||1);ogl.uniform1f(ul.eps,CS.epsExp);
-  ogl.uniform4fv(ul.nan,[CS.nanR,CS.nanG,CS.nanB,CS.nanA]);
-  ogl.viewport(0,0,W,H);ogl.drawArrays(ogl.TRIANGLE_STRIP,0,4);
+  ogl.enable(ogl.BLEND);ogl.blendFunc(ogl.SRC_ALPHA,ogl.ONE_MINUS_SRC_ALPHA);
+  ogl.clearColor(CS.nanR,CS.nanG,CS.nanB,CS.nanA);ogl.clear(ogl.COLOR_BUFFER_BIT);
+  _passRenderUniforms(ogl,ul,S.lax_x,S.lax_y,bounds,W,H);
   // Download
   oc.toBlob(blob=>{
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);
@@ -3141,7 +3236,7 @@ function buildExportText(mode){
       paramLines,
       '\\\\end{align}',
       '',
-      '\\\\textbf{Map axes:} $'+axXlatex+'$ (horiz, $['+bounds.lox.toFixed(4)+',\\\\,'+bounds.hix.toFixed(4)+']$) vs $'+axYlatex+'$ (vert, $['+bounds.loy.toFixed(4)+',\\\\,'+bounds.hiy.toFixed(4)+']$)',
+      '\\\\textbf{Map axes:} $'+axXlatex+'$ (horiz, $['+(bounds?.lox||0).toFixed(4)+',\\\\,'+(bounds?.hix||0).toFixed(4)+']$) vs $'+axYlatex+'$ (vert, $['+bounds.loy.toFixed(4)+',\\\\,'+bounds.hiy.toFixed(4)+']$)',
       '',
       '\\\\textbf{Integration:} '+(CS.integrator==='rk4'?'RK4':'Euler')+', $dt='+S.dt+'$, $N='+S.n_steps+'$, $\\\\varepsilon=10^{'+CS.epsExp+'}$',
       '',
@@ -3159,7 +3254,7 @@ function buildExportText(mode){
       'Parameters:',
       paramLines,
       '',
-      'Map axes: '+axXname+' ['+bounds.lox.toFixed(4)+', '+bounds.hix.toFixed(4)+'] vs '+axYname+' ['+bounds.loy.toFixed(4)+', '+bounds.hiy.toFixed(4)+']',
+      'Map axes: '+axXname+' ['+(bounds?.lox||0).toFixed(4)+', '+(bounds?.hix||0).toFixed(4)+'] vs '+axYname+' ['+(bounds?.loy||0).toFixed(4)+', '+(bounds?.hiy||0).toFixed(4)+']',
       '',
       'Integration: '+(CS.integrator==='rk4'?'RK4':'Euler')+', dt='+S.dt+', N='+S.n_steps+', eps=1e'+CS.epsExp,
       'Initial condition: (x0,y0,z0) = ('+S.p0.map(v=>v.toFixed(3)).join(', ')+')',
